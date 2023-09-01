@@ -1,0 +1,44 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "dev" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  buildu:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build on Ubuntu
+      run: cargo build --verbose --release
+    - name: Run tests
+      run: cargo test --verbose
+
+  buildw:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build on Windows
+      run: cargo build --verbose --release
+    - name: Run tests
+      run: cargo test --verbose
+
+  buildm:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build on MacOs
+      run: cargo build --verbose --release
+    - name: Run tests
+      run: cargo test --verbose
